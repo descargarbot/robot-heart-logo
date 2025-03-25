@@ -1,0 +1,313 @@
+<html>
+<head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: black;
+      }
+      
+      .robot {
+        position: relative;
+        width: 340px;
+      }
+      
+      .head-section {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 20px;
+      }
+      
+      .head {
+        width: 200px;
+        height: 140px;
+        background-color: #FFFFFF;
+        border-radius: 15px;
+        position: relative;
+      }
+      
+      .antenna {
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 25px;
+        background-color: #FFFFFF;
+        border-radius: 10px 10px 0 0;
+      }
+      
+      .antenna-top {
+        position: absolute;
+        top: -45px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 29px;
+        height: 29px;
+        background-color: #FFFFFF;
+        border-radius: 50%;
+      }
+      
+      .eyes {
+        display: flex;
+        justify-content: space-between;
+        width: 110px;
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .eye {
+        width: 22px;
+        height: 32px;
+        background-color: black;
+      }
+      
+      .mouth {
+        position: absolute;
+        bottom: 19px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 76px;
+        height: 13px;
+        background-color: black;
+      }
+      
+      .ear {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 23px;
+        height: 38px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+      }
+      
+      .ear.left {
+        left: 41px;
+      }
+      
+      .ear.right {
+        right: 41px;
+      }
+      
+      .body-section {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        position: relative;
+      }
+      
+      .body {
+        width: 264px;
+        height: 172px;
+        background-color: #FFFFFF;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .arm {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 119px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+      }
+      
+      .arm.left {
+        left: 15px;
+      }
+      
+      .arm.right {
+        right: 15px;
+      }
+      
+      .arm-second {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 17px;
+        height: 73px;
+        background-color: #FFFFFF;
+        border-radius: 10px;
+      }
+      
+      .arm-second.left {
+        left: -8px;
+      }
+      
+      .arm-second.right {
+        right: -8px;
+      }
+      
+      .heart {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 4px;
+        width: 170px;
+      }
+      
+      .dot {
+        width: 20px;
+        height: 20px;
+        background-color: black;
+        border-radius: 50%;
+        margin: 0 auto;
+        transition: background-color 0.3s ease;
+      }
+      
+      .no-dot {
+        width: 20px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="robot">
+      <div class="head-section">
+        <div class="ear left"></div>
+        <div class="head">
+          <div class="antenna"></div>
+          <div class="antenna-top"></div>
+          <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+        <div class="ear right"></div>
+      </div>
+      
+      <div class="body-section">
+        <div class="arm left"></div>
+        <div class="arm-second left"></div>
+        <div class="body">
+          <div class="heart">
+            <div class="no-dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="no-dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="no-dot"></div>
+            
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            
+            <div class="no-dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="no-dot"></div>
+            
+            <div class="no-dot"></div>
+            <div class="no-dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="no-dot"></div>
+            <div class="no-dot"></div>
+            
+            <div class="no-dot"></div>
+            <div class="no-dot"></div>
+            <div class="no-dot"></div>
+            <div class="dot"></div>
+            <div class="no-dot"></div>
+            <div class="no-dot"></div>
+            <div class="no-dot"></div>
+          </div>
+        </div>
+        <div class="arm right"></div>
+        <div class="arm-second right"></div>
+      </div>
+    </div>
+  
+    <script>
+      const colorPalette = [
+        '#8B0000', '#800020', '#AA4A44', '#B22222', '#A52A2A', '#C41E3A', '#5E1914', '#960018', '#7C0A02',
+        '#8B4513', '#A0522D', '#803A00', '#CC5500', '#964B00', '#4A2C2A', '#592720', '#321414', '#5D2B2C',
+        '#826644', '#9B870C', '#8B8000', '#625D5D', '#79743D', '#705335', '#4B3D2A', '#5C4033',
+        '#006400', '#556B2F', '#3C4D03', '#2F4F4F', '#004B49', '#013220', '#1B4D3E', '#3B5E2B', '#29AB87', '#26413C', '#4A5D23', '#3F5E5A',
+        '#000080', '#191970', '#1A2930', '#005C69', '#154360', '#0F3B57', '#002147', '#2C3539', '#003545',
+        '#4B0082', '#483D8B', '#702963', '#660066', '#4E1A3D', '#5D3954', '#301934', '#563C5C', '#400235', '#654321',
+        '#36454F', '#353935', '#4A4A4A', '#555D50', '#464646', '#49443C', '#3D3C3A', '#54626F', '#4E5754', '#3C4142',
+        '#2C3539', '#5B5B5B', '#4C5866', '#34282C', '#463E3F', '#474B4E', '#2C2C2C', '#2E2E2E', '#2F353B', '#4D5D53', '#386E70'
+      ];
+
+      const dots = document.querySelectorAll('.dot');
+      
+      function assignRandomColor(dot) {
+        const randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        dot.style.backgroundColor = randomColor;
+      }
+      
+      function colorizeAllDots() {
+        dots.forEach(dot => {
+          assignRandomColor(dot);
+        });
+      }
+      
+      function heartbeatPattern() {
+        colorizeAllDots();
+        
+        setInterval(() => {
+          const dotsToChange = Math.floor(dots.length * 0.5);
+          
+          for (let i = 0; i < dotsToChange; i++) {
+            const randomIndex = Math.floor(Math.random() * dots.length);
+            assignRandomColor(dots[randomIndex]);
+          }
+        }, 250);
+      }
+      
+      function colorWaveEffect() {
+        let currentIndex = 0;
+        
+        colorizeAllDots();
+        
+        setInterval(() => {
+          for (let i = 0; i < 3; i++) {
+            if (currentIndex >= dots.length) {
+              currentIndex = 0;
+            }
+            assignRandomColor(dots[currentIndex]);
+            currentIndex++;
+          }
+        }, 40);
+      }
+      
+      colorizeAllDots();
+      //heartbeatPattern();
+      colorWaveEffect();
+    </script>
+  </body>
+</html>
