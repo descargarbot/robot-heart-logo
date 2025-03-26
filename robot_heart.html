@@ -33,6 +33,7 @@
         background-color: #FFFFFF;
         border-radius: 15px;
         position: relative;
+        transition: background-color 1s ease;
       }
       
       .antenna {
@@ -44,6 +45,7 @@
         height: 25px;
         background-color: #FFFFFF;
         border-radius: 10px 10px 0 0;
+        transition: background-color 1s ease;
       }
       
       .antenna-top {
@@ -55,6 +57,7 @@
         height: 29px;
         background-color: #FFFFFF;
         border-radius: 50%;
+        transition: background-color 1s ease;
       }
       
       .eyes {
@@ -91,6 +94,7 @@
         height: 38px;
         background-color: #FFFFFF;
         border-radius: 10px;
+        transition: background-color 1s ease;
       }
       
       .ear.left {
@@ -116,6 +120,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: background-color 1s ease;
       }
       
       .arm {
@@ -126,6 +131,7 @@
         height: 119px;
         background-color: #FFFFFF;
         border-radius: 10px;
+        transition: background-color 1s ease;
       }
       
       .arm.left {
@@ -144,6 +150,7 @@
         height: 73px;
         background-color: #FFFFFF;
         border-radius: 10px;
+        transition: background-color 1s ease;
       }
       
       .arm-second.left {
@@ -265,6 +272,20 @@
 
       const dots = document.querySelectorAll('.dot');
       
+      // Elementos del robot para aplicar el degradado
+      const robotParts = {
+        antennaTop: document.querySelector('.antenna-top'),
+        antenna: document.querySelector('.antenna'),
+        earLeft: document.querySelector('.ear.left'),
+        head: document.querySelector('.head'),
+        earRight: document.querySelector('.ear.right'),
+        armSecondLeft: document.querySelector('.arm-second.left'),
+        armLeft: document.querySelector('.arm.left'),
+        body: document.querySelector('.body'),
+        armRight: document.querySelector('.arm.right'),
+        armSecondRight: document.querySelector('.arm-second.right')
+      };
+      
       function assignRandomColor(dot) {
         const randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
         dot.style.backgroundColor = randomColor;
@@ -304,10 +325,176 @@
           }
         }, 40);
       }
+
+      // Efecto de transición de colores para los puntos
+      function rainbowPulseEffect() {
+        colorizeAllDots();
+        
+        // Array de grupos de colores para crear transiciones temáticas
+        const colorGroups = [
+          ['#FF0000', '#FF5500', '#FFAA00', '#FFFF00', '#FFAA00', '#FF5500'], // Fuego
+          ['#0000FF', '#0055FF', '#00AAFF', '#00FFFF', '#00AAFF', '#0055FF'], // Agua
+          ['#00FF00', '#55FF00', '#AAFF00', '#FFFF00', '#AAFF00', '#55FF00'], // Naturaleza
+          ['#FF00FF', '#FF00AA', '#FF0055', '#FF0000', '#FF0055', '#FF00AA']  // Energía
+        ];
+        
+        let groupIndex = 0;
+        
+        setInterval(() => {
+          const currentGroup = colorGroups[groupIndex];
+          
+          // Aplicar el grupo de colores a los puntos
+          dots.forEach((dot, index) => {
+            const colorIndex = index % currentGroup.length;
+            dot.style.backgroundColor = currentGroup[colorIndex];
+          });
+          
+          // Cambiar al siguiente grupo de colores
+          groupIndex = (groupIndex + 1) % colorGroups.length;
+        }, 2000);
+      }
+
       
+      function applyUniformGradient() {
+        // Definir pares de colores para degradado
+        const gradientPairs = [
+          { from: '#000080', to: '#000000' }, // Azul marino a Negro
+          { from: '#000000', to: '#000080' }, // Negro a Azul marino
+          { from: '#800000', to: '#000000' }, // Rojo oscuro a Negro
+          { from: '#000000', to: '#800000' }, // Negro a Rojo oscuro
+          { from: '#008080', to: '#000000' }, // Verde azulado a Negro
+          { from: '#000000', to: '#008080' }, // Negro a Verde azulado
+          { from: '#4B0082', to: '#000000' }, // Índigo a Negro
+          { from: '#000000', to: '#4B0082' }  // Negro a Índigo
+        ];
+        
+        let currentPairIndex = 0;
+        
+        // Función para aplicar la degradación
+        function applyGradient() {
+          const currentPair = gradientPairs[currentPairIndex];
+          const { from, to } = currentPair;
+          
+          // Calcular valores intermedios para crear efecto de degradado
+          const steps = 10; // Número de pasos en el degradado
+          
+          for (let i = 0; i <= steps; i++) {
+            setTimeout(() => {
+              // Calcular color intermedio
+              const ratio = i / steps;
+              const color = interpolateColor(from, to, ratio);
+              
+              // Aplicar el color a todas las partes del robot
+              Object.values(robotParts).forEach(part => {
+                part.style.backgroundColor = color;
+              });
+            }, i * 200); // Cada paso toma 200ms
+          }
+          
+          // Pasar al siguiente par de colores
+          currentPairIndex = (currentPairIndex + 1) % gradientPairs.length;
+        }
+        
+        // Iniciar el ciclo de degradado
+        applyGradient();
+        setInterval(applyGradient, (10 * 200) + 1000); // Esperar a que termine el degradado actual + 1s adicional
+      }
+      
+      
+      function diagonalSweepGradient() {
+        // Definir pares de colores para el degradado
+        const gradientPairs = [
+          { from: '#000080', to: '#000000' }, // Azul marino a Negro
+          { from: '#000000', to: '#000080' }, // Negro a Azul marino
+          { from: '#800000', to: '#000000' }, // Rojo oscuro a Negro
+          { from: '#000000', to: '#800000' }, // Negro a Rojo oscuro
+          { from: '#008080', to: '#000000' }, // Verde azulado a Negro
+          { from: '#000000', to: '#008080' }, // Negro a Verde azulado
+          { from: '#4B0082', to: '#000000' }, // Índigo a Negro
+          { from: '#000000', to: '#4B0082' }  // Negro a Índigo
+        ];
+        
+        let currentPairIndex = 0;
+        
+        // Función para aplicar el efecto de barrido
+        function applySweep() {
+          const currentPair = gradientPairs[currentPairIndex];
+          const { from, to } = currentPair;
+          
+          // Orden de barrido de la esquina superior izquierda a la inferior derecha
+          const sweepOrder = [
+            'antennaTop',     // Parte superior izquierda
+            'antenna',
+            'earLeft',
+            'head',
+            'earRight',
+            'armSecondLeft',
+            'armLeft',
+            'body',
+            'armRight',
+            'armSecondRight'  // Parte inferior derecha
+          ];
+          
+          // Aplicar la transición a cada parte en la secuencia definida
+          sweepOrder.forEach((partKey, index) => {
+            setTimeout(() => {
+              // Gradualmente cambia del color inicial al final
+              const part = robotParts[partKey];
+              part.style.backgroundColor = from;
+              
+              // Aplicar transición al color final después de un pequeño retraso
+              setTimeout(() => {
+                part.style.backgroundColor = to;
+              }, 500);
+            }, index * 200); // 200ms entre cada parte
+          });
+          
+          // Pasar al siguiente par de colores después de que se complete el barrido
+          setTimeout(() => {
+            currentPairIndex = (currentPairIndex + 1) % gradientPairs.length;
+          }, (sweepOrder.length * 200) + 1000);
+        }
+        
+        // Iniciar el ciclo de barrido
+        applySweep();
+        setInterval(applySweep, (10 * 200) + 2000); // Tiempo total para completar un barrido + tiempo adicional
+      }
+      
+      // Función para interpolar entre dos colores
+      function interpolateColor(color1, color2, factor) {
+        // Convertir colores hex a RGB
+        const rgb1 = hexToRgb(color1);
+        const rgb2 = hexToRgb(color2);
+        
+        // Interpolar componentes RGB
+        const r = Math.round(rgb1.r + factor * (rgb2.r - rgb1.r));
+        const g = Math.round(rgb1.g + factor * (rgb2.g - rgb1.g));
+        const b = Math.round(rgb1.b + factor * (rgb2.b - rgb1.b));
+        
+        // Convertir de vuelta a hex
+        return rgbToHex(r, g, b);
+      }
+      
+      // Función para convertir color hex a RGB
+      function hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        } : { r: 0, g: 0, b: 0 };
+      }
+      
+      // Función para convertir RGB a hex
+      function rgbToHex(r, g, b) {
+        return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+      }
+      
+    
       colorizeAllDots();
-      //heartbeatPattern();
-      colorWaveEffect();
+      rainbowPulseEffect();
+      //applyUniformGradient()
+      diagonalSweepGradient();
     </script>
   </body>
 </html>
